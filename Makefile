@@ -1,5 +1,5 @@
 
-build: CMakeLists.txt main.cpp
+build: CMakeLists.txt src/main.cpp
 	@make ProjectBuild --no-print-directory
 
 ProjectBuild:

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 project(CreateCppProject)
 set(CMAKE_CXX_STANDARD 14)
 
-set(SOURCE_FILES main.cpp)
+# set(SOURCE_FILES main.cpp)
 
 include(".scripts/install_xrepo.cmake")
 add_packages("boost" "all=true")
