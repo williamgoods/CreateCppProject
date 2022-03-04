@@ -1,8 +1,6 @@
 include(ExternalProject)
 include("${CMAKE_SOURCE_DIR}/.scripts/pre_functions.cmake")
 
-# SET(CMAKE_LINK_LIBS "${CMAKE_LINK_LIBS}" CACHE STRING "CMAKE_LINK_LIBS" FORCE)
-
 SET(ROOT_DIR ${CMAKE_SOURCE_DIR})
 SET(ROOT_XREPO "${CMAKE_SOURCE_DIR}/.xrepo")
 
@@ -27,7 +25,7 @@ macro(include_link package_name)
     message("${package_name} ----- has ${${package_name}_CMAKE_LINK_LIBS}")
 
     set_property(GLOBAL PROPERTY CMAKE_LINK_LIBS "${tmp}")
-    # SET(CMAKE_LINK_LIBS "${tmp}" CACHE STRING "CMAKE_LINK_LIBS" FORCE)
+    SET(CMAKE_LINK_LIBS "${tmp}" CACHE STRING "CMAKE_LINK_LIBS" FORCE)
   endif()
 endmacro(include_link)
 

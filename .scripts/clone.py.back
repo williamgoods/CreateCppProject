@@ -1,0 +1,37 @@
+import os
+import re
+import subprocess
+
+def test():
+    url = 'https://github.com/vuejs/vue.git'
+
+    output = subprocess.Popen(['git', 'clone', '--progress', url], stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+
+    fd = output.stderr.fileno()
+    while True:
+        lines = os.read(fd,1000).decode('utf-8')
+        lines = re.split('\n|\r', lines)
+        for l in lines:
+            if l != '':
+                # Receiving objects:   1% (112460/8591736), 51.54 MiB | 9.79 MiB/s
+                m = re.match(r'^Receiving objects:(.*)', l)
+                if m:
+                    slice_one = m.group(1)
+
+                    m2 = re.match(r'^\s*(\d*)%(.*)', slice_one)
+                    if m2:
+                        progress = m2.group(1)
+                        slice_two = m2.group(2)
+                        m3 = re.match(r'^\s*\(\d*/\d*\),\s*(\d+\.\d+)\s*MiB\s*\|\s*(\d+\.\d+).*', slice_two)
+                        if m3:
+                            data_size = m3.group(1)
+                            speed = m3.group(2)
+                            print("progress: ", progress, "%,data size: ", data_size, "MiB, speed: ", speed, "MiB/s")
+
+        if len(lines) == 1:
+                break
+
+    print('Press enter to continue.')
+
+if __name__ == "__main__":
+    test()

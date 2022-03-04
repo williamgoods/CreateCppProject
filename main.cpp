@@ -63,6 +63,7 @@ int main()
             if(now / period::day_of_week_local() == 7)
                 std::cout << std::endl;
         }
+
         std::cout << std::endl;
     }
 }
