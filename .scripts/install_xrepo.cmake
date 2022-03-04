@@ -25,7 +25,7 @@ macro(include_link package_name)
     message("${package_name} ----- has ${${package_name}_CMAKE_LINK_LIBS}")
 
     set_property(GLOBAL PROPERTY CMAKE_LINK_LIBS "${tmp}")
-    SET(CMAKE_LINK_LIBS "${tmp}" CACHE STRING "CMAKE_LINK_LIBS" FORCE)
+    # SET(CMAKE_LINK_LIBS "${tmp}" CACHE STRING "CMAKE_LINK_LIBS" FORCE)
   endif()
 endmacro(include_link)
 
