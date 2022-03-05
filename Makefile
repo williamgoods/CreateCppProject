@@ -3,13 +3,13 @@ build: CMakeLists.txt src/main.cpp
 	@make ProjectBuild --no-print-directory
 
 ProjectBuild:
-	@bash .scripts/build.sh
+	@elvish .scripts/build.elv
 
 run:
 	@make ProjectRun --no-print-directory
 
 ProjectRun:
-	@bash .scripts/run.sh
+	@cmake -P .scripts/run.cmake
 
 clean:
 	@rm -rf build

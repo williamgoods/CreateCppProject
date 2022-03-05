@@ -35,7 +35,6 @@ macro(include_link package_name)
     include_directories(${${package_name}_INCLUDE_DIR})
   endif()
 
-  # load CMAKE_LINK_LIBS from CMakeCache.txt, if
   read_cache_variable(CMAKE_LINK_LIBS tmp)
   if (NOT ${${package_name}_LINK_DIR} STREQUAL "")
     link_directories(${${package_name}_LINK_DIR})
@@ -43,7 +42,7 @@ macro(include_link package_name)
     # list(APPEND tmp "${${package_name}_CMAKE_LINK_LIBS}")
     string(CONCAT tmp "${tmp};" "${${package_name}_CMAKE_LINK_LIBS}")
     # message("${package_name} ----- has ${${package_name}_CMAKE_LINK_LIBS}")
-
+    # string(REPLACE "lib" "" tmp "${tmp}")
     # SET(CMAKE_LINK_LIBS "${tmp}" CACHE STRING "CMAKE_LINK_LIBS" FORCE)
   endif()
   set_property(GLOBAL PROPERTY CMAKE_LINK_LIBS "${tmp}")
